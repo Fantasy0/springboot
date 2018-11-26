@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisdemo.dao.TestPersonMapper">
+  <resultMap id="BaseResultMap" type="com.example.mybatisdemo.entity.TestPerson">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="test_id" jdbcType="INTEGER" property="testId" />
+    <result column="test_name" jdbcType="VARCHAR" property="testName" />
+    <result column="test_phone" jdbcType="VARCHAR" property="testPhone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    test_id, test_name, test_phone
+  </sql>
+    <select id="selectPerson" resultType="com.example.mybatisdemo.entity.TestPerson">
+      select test_id, test_name, test_phone from test_person
+    </select>
+</mapper>
