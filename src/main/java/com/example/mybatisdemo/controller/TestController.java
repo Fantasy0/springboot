@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/api/test")
 public class TestController {
     @Resource
     PersonService personService;
