@@ -16,7 +16,7 @@ public class UserServiceImpl extends BaseService<User> implements UserService  {
 
     @Override
     public void saveUser(User user) {
-        userMapper.addUser(user);
+        saveSelective(user);
     }
 
     @Override
