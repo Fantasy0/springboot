@@ -32,7 +32,7 @@
         <javaClientGenerator targetPackage="com.example.mybatisdemo.dao" targetProject="src/main/java"
                              type="XMLMAPPER"/>
 
-        <table tableName="sys_permission" domainObjectName="SysPermission"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+        <table tableName="user" domainObjectName="User"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>

@@ -1,28 +1,45 @@
 package com.example.mybatisdemo.config;
 
-import org.springframework.cache.CacheManager;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.cache.RedisCacheManager;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
+@Slf4j
 @Configuration
-@EnableCaching//开启注解
+@EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
-    @Bean
-    public CacheManager cacheManager(RedisTemplate<?,?> redisTemplate) {
-        CacheManager cacheManager = new RedisCacheManager(redisTemplate);
-        return cacheManager;
-    }
+    @Value("${spring.redis.host}")
+    private String host;
+
+    @Value("${spring.redis.port}")
+    private int port;
+
+    @Value("${spring.redis.timeout}")
+    private int timeout;
+
+    @Value("${spring.redis.pool.maxIdle}")
+    private int maxIdle;
+
+    @Value("${spring.redis.pool.maxWait}")
+    private long maxWaitMillis;
 
     @Bean
-    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
-        RedisTemplate<String, String> redisTemplate = new RedisTemplate<String, String>();
-        redisTemplate.setConnectionFactory(factory);
-        return redisTemplate;
+    public JedisPool redisPoolFactory() {
+        log.info("JedisPool注入成功！！");
+        log.info("redis地址：" + host + ":" + port);
+        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+        jedisPoolConfig.setMaxIdle(maxIdle);
+        jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);
+
+        JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout);
+
+        return jedisPool;
     }
+
 }
 

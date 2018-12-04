@@ -9,21 +9,21 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="other_info" jdbcType="VARCHAR" property="otherInfo" />
+    <result column="role" jdbcType="VARCHAR" property="role" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--
       WARNING - @mbg.generated
     -->
-    id, name, password, other_info
+    id, name, password, other_info, role
   </sql>
-    <insert id="addUser" parameterType="com.example.mybatisdemo.entity.User">
-        insert  into user(
-                name, password, other_info)
-        values(
-        #{name}, #{password}, #{otherInfo}
-                )
-    </insert>
-    <select id="selectAllUser" resultType="com.example.mybatisdemo.entity.User">
-    select id, name, password, other_info from user
+    <select id="getPassword" resultType="java.lang.String">
+      select password from user where name = #{username}
+    </select>
+  <select id="getRole" resultType="java.lang.String">
+    select role from user where name = #{username}
+  </select>
+  <select id="selectAllUser" resultType="com.example.mybatisdemo.entity.User">
+    select id, name, password, other_info, role from user
   </select>
 </mapper>

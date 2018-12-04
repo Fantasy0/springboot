@@ -6,15 +6,9 @@ import com.example.mybatisdemo.utils.MyMapper;
 import java.util.List;
 
 public interface UserMapper extends MyMapper<User> {
-    /**
-     * 查询所有用户
-     * @return
-     */
-    List<User> selectAllUser();
+    String getPassword(String username);
 
-    /**
-     * 添加用户
-     * @param user
-     */
-    void addUser(User user);
+    String getRole(String username);
+
+    List<User> selectAllUser();
 }

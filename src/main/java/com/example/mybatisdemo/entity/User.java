@@ -1,10 +1,11 @@
 package com.example.mybatisdemo.entity;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-public class User implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -15,6 +16,8 @@ public class User implements Serializable {
 
     @Column(name = "other_info")
     private String otherInfo;
+
+    private String role;
 
     /**
      * @return id
@@ -70,5 +73,19 @@ public class User implements Serializable {
      */
     public void setOtherInfo(String otherInfo) {
         this.otherInfo = otherInfo;
+    }
+
+    /**
+     * @return role
+     */
+    public String getRole() {
+        return role;
+    }
+
+    /**
+     * @param role
+     */
+    public void setRole(String role) {
+        this.role = role;
     }
 }
