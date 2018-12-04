@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisdemo.dao.SysUserMapper">
+  <resultMap id="BaseResultMap" type="com.example.mybatisdemo.entity.SysUser">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="full_name" jdbcType="VARCHAR" property="fullName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    user_id, user_name, full_name, password, salt
+  </sql>
+    <select id="findByUserName" resultType="com.example.mybatisdemo.entity.SysUser">
+      select user_id, user_name, full_name, password, salt from sys_user
+      where user_name =#{userName}
+    </select>
+</mapper>
